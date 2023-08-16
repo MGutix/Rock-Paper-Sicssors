@@ -1,3 +1,4 @@
+
 function getComputerChoice(){
     let choice = getRandomInt(1,4);
 
@@ -34,31 +35,85 @@ function playRound(u, m){
 }
 
 
-function game(){
-    let win = 0;
-    let lose = 0;
-    let computerSelection;
-    let playerSelection;
+function game(playerSelection){
+    
+    let computerSelection = getComputerChoice();;
     
     
-    while (win < 5 && lose < 5){
-        computerSelection = getComputerChoice();
-        playerSelection = prompt('Pick your weapon!');
-        console.log(`You picked: ${playerSelection}`);
-        console.log(`The AI picked: ${computerSelection}`);
-
-        console.log(playRound(playerSelection, computerSelection))
-        if (playRound(playerSelection, computerSelection).includes('Win')){
-            win++;
-        } else if (playRound(playerSelection, computerSelection).includes('Lose')){
-            lose++;
-        }
-
-        console.log(`Your Record is ${win} Wins and ${lose} Losses`);
+    if (playRound(playerSelection, computerSelection).includes('Win')){
+        win++;
+    } else if (playRound(playerSelection, computerSelection).includes('Lose')){
+        lose++;
     }
-
-    console.log('Game Over')
+    h3.textContent = `You picked: ${playerSelection}. The AI picked: ${computerSelection}`;
+    
+    h5.textContent =`Your Record is ${win} Wins and ${lose} Losses`;
+    
 }
 
-game();
+
+let win = 0;
+let lose = 0;
+
+//Recibe click en alguno de los botones y pasa la seleccion
+const rock = document.getElementById('rock');
+rock.addEventListener('click', () => {
+    if (win == 5){
+    h5.textContent = 'You Win!'
+    win = 0;
+    lose = 0;
+} else if (lose == 5){
+    h5.textContent = 'You Lose!'
+    win = 0;
+    lose = 0;
+} else {
+    game('rock');
+}
+});
+
+const paper = document.getElementById('paper');
+paper.addEventListener('click', () => {
+    if (win == 5){
+    h5.textContent = 'You Win!'
+    win = 0;
+    lose = 0;
+} else if (lose == 5){
+    h5.textContent = 'You Lose!'
+    win = 0;
+    lose = 0;
+} else {
+    game('paper');
+}
+    
+});
+
+const scissors = document.getElementById('scissors');
+scissors.addEventListener('click', () => {
+    if (win == 5){
+    h5.textContent = 'You Win!'
+    win = 0;
+    lose = 0;
+} else if (lose == 5){
+    h5.textContent = 'You Lose!'
+    win = 0;
+    lose = 0;
+} else {
+    game('scissors');
+}
+});
+
+const div = document.createElement("div");
+div.id = "div";
+document.body.appendChild(div);
+  
+const h3 = document.createElement("h3");
+h3.id = "h3";
+div.appendChild(h3);
+
+const h5 = document.createElement("h5");
+h5.id = "h5";
+div.appendChild(h5);
+
+
+
 
